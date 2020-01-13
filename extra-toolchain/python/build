@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+patch -p1 < python3-always-pip.patch
+
+./configure \
+    --prefix=/usr \
+    --enable-shared \
+    --with-system-expat \
+    --with-system-ffi \
+    --with-ensurepip=yes
+
+make
+make DESTDIR="$1" install
+
+ln -s python3 "$1/usr/bin/python"
+ln -s pip3    "$1/usr/bin/pip"
+
+# Make static library writable.
+chmod -v u+w "$1/usr/lib/libpython"*
