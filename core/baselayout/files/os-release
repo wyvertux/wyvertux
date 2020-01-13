@@ -1,0 +1,9 @@
+NAME="Wyvertux"
+PRETTY_NAME="Wyvertux Linux"
+ID=wyvertux
+ID_LIKE=kiss
+BUILD_ID=rolling
+HOME_URL="https://github.com/konimex/wyvertux"
+DOCUMENTATION_URL="https://github.com/konimex/wyvertux"
+SUPPORT_URL="https://github.com/konimex/wyvertux"
+BUG_REPORT_URL="https://github.com/konimex/wyvertux"
