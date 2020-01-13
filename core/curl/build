@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --enable-ipv6 \
+    --enable-unix-sockets \
+    --enable-hidden-symbols \
+    --without-libidn \
+    --without-libidn2 \
+    --disable-manual \
+    --disable-ldap \
+    --disable-ares \
+    --without-libidn \
+    --without-librtmp \
+    --with-pic \
+    --with-ca-fallback
+
+make
+gmake DESTDIR="$1" install
