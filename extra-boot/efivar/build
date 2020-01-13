@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+export CC="${CC:-cc}"
+
+patch -p1 < fix-gcc9-dp.h.patch
+patch -p1 < fix-gcc9.patch
+
+# Avoid repeating ourselves.
+mk() {
+    gmake \
+        libdir=/usr/lib/ \
+        bindir=/usr/bin/ \
+        mandir=/usr/share/man/ \
+        includedir=/usr/include/ \
+        "$@"
+}
+
+mk
+mk DESTDIR="$1" install
