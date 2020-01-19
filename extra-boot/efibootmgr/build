@@ -4,7 +4,6 @@ export CC="${CC:-cc}"
 export CFLAGS="$CFLAGS -I/usr/include/efivar"
 
 patch -p1 < efivar.patch
-patch -p1 < fix-verbose.patch
 
 gmake \
     EXTRA_CFLAGS=-Os \
