@@ -1,11 +1,13 @@
 #!/bin/sh -e
 
+export PATH="/usr/gnu/bin:$PATH"
+
 ./configure \
     --prefix=/usr \
     --syslibdir=/usr/lib
 
-gmake
-gmake DESTDIR="$1" install
+make
+make DESTDIR="$1" install
 
 mkdir -p "$1/usr/bin"
 ln -s "/usr/lib/ld-musl-x86_64.so.1" "$1/usr/bin/ldd"
