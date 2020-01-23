@@ -1,3 +1,4 @@
 #!/bin/sh -e
 
-gmake headers_install INSTALL_HDR_PATH="$1/usr" HOSTCC=cc
+export PATH="/usr/gnu/bin:$PATH"
+make headers_install INSTALL_HDR_PATH="$1/usr" HOSTCC=cc
