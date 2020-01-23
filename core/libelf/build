@@ -1,10 +1,12 @@
 #!/bin/sh -e
 
+export PATH="/usr/gnu/bin:$PATH"
+
 sed -i 's/-I/-isystem /g' libelf.pc.in
 
 ./configure \
     --prefix=/usr \
     --enable-nls=auto
 
-gmake
-gmake prefix="$1/usr" install
+make
+make prefix="$1/usr" install
