@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+export PATH="/usr/gnu/bin:$PATH"
+
 ./configure \
     --prefix=/usr \
     --with-threads \
@@ -7,5 +9,5 @@
     --without-python \
     --without-icu
 
-gmake
-gmake DESTDIR="$1" install
+make
+make DESTDIR="$1" install
