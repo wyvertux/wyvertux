@@ -6,9 +6,6 @@ remove GNU utilities (if it's even possible) from the Linux build system.
 This kiss-repo-compliant git repo contains these directories:
 - core: essential packages for Wyvertux to run and build everything else
         from the rootfs
-- extra-toolchain: additional packages for Wyvertux to build core and
-                   other things, like kernel
-- extra-boot: packages needed to boot the distro
 - extra: additional packages that might be useful to your workflow
 - gnu: for packages made by the GNU project that will be needed
 
