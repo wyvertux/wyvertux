@@ -1,7 +1,5 @@
 #!/bin/sh -e
 
-export PATH="/usr/gnu/bin:$PATH"
-
 cat > config.mak <<EOF
 NO_GETTEXT=YesPlease
 NO_SVN_TESTS=YesPlease
@@ -20,5 +18,5 @@ EOF
     ac_cv_snprintf_returns_bogus=no \
     ac_cv_fread_reads_directories=yes
 
-make
-make DESTDIR="$1" install
+gmake
+gmake DESTDIR="$1" install
