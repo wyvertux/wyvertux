@@ -1,7 +1,5 @@
 #!/bin/sh -e
 
-export PATH="/usr/gnu/bin:$PATH"
-
 ./configure \
     --prefix=/usr \
     --sbindir=/usr/bin \
@@ -14,8 +12,8 @@ export PATH="/usr/gnu/bin:$PATH"
     --disable-fsck
 
 # MKDIR_P fixes an install issue on musl/busybox.
-make
-make MKDIR_P="install -d" DESTDIR="$1" install install-libs
+gmake
+gmake MKDIR_P="install -d" DESTDIR="$1" install install-libs
 
 # Make static libraries writable.
 chmod -v u+w "$1/usr/lib/"*.a
