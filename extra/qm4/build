@@ -1,6 +1,4 @@
 #!/bin/sh -e
 
-export PATH="/usr/gnu/bin:$PATH"
-
-make
-make DESTDIR="$1" PREFIX=/usr install
+gmake
+gmake DESTDIR="$1" PREFIX=/usr install
