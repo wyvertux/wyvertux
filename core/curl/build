@@ -1,7 +1,5 @@
 #!/bin/sh -e
 
-export PATH="/usr/gnu/bin:$PATH"
-
 ./configure \
     --prefix=/usr \
     --enable-ipv6 \
@@ -18,4 +16,4 @@ export PATH="/usr/gnu/bin:$PATH"
     --with-ca-fallback
 
 make
-make DESTDIR="$1" install
+gmake DESTDIR="$1" install
