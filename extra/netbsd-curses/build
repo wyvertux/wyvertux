@@ -1,9 +1,7 @@
 #!/bin/sh
 
-export PATH="/usr/bin/gnu:$PATH"
-
-make
-make DESTDIR="$1" PREFIX=/usr install
+gmake
+gmake DESTDIR="$1" PREFIX=/usr install
 
 for libs in curses terminfo panel menu form; do
     chmod 755 "$1/usr/lib/lib${libs}.so"
