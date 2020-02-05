@@ -1,0 +1,38 @@
+#!/bin/sh -e
+
+# Grub is built in a function so the script argument needs to be stored.
+pkg_dir=$1
+
+build_grub() (
+    cp -a grub "grub-${1##*=}"
+    cd "grub-${1##*=}"
+
+    ./configure \
+        --prefix=/usr \
+        --sbindir=/usr/bin \
+        --sysconfdir=/etc \
+        --disable-werror \
+        --disable-grub-mkfont \
+        --disable-grub-mount \
+        "$@"
+
+    make
+    make DESTDIR="$pkg_dir" install
+)
+
+build_grub --with-platform=pc
+build_grub --with-platform=efi --disable-efiemu
+
+# Install /etc/default/grub (used by grub-mkconfig).
+install -Dm0644 grub.default "$1/etc/default/grub"
+
+# Remove gdb debugging files.
+(
+    cd "$pkg_dir/usr/lib"
+
+    rm -f grub/*/*.module
+    rm -f grub/*/*.image
+    rm -f grub/*/kernel.exec
+    rm -f grub/*/gdb_grub
+    rm -f grub/*/gmodule.pl
+)
