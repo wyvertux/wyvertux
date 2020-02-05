@@ -1,7 +1,6 @@
 #!/bin/sh -e
 
 export CC="${CC:-cc}"
-export PATH="/usr/gnu/bin:$PATH"
 
 # The order here matters.
 patch -p1 < b98ba8921010d03f46704a476c69861515deb1ca.patch
@@ -12,7 +11,7 @@ patch -p1 < 4e04afc2df9bbc26e5ab524b53a6f4f1e61d7c9e.patch
 
 # Avoid repeating ourselves.
 mk() {
-    make \
+    gmake \
         libdir=/usr/lib \
         bindir=/usr/bin \
         mandir=/usr/share/man \
