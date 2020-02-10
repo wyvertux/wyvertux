@@ -16,4 +16,4 @@
     --with-ca-fallback
 
 make
-gmake DESTDIR="$1" install
+make DESTDIR="$1" install
