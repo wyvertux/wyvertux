@@ -22,3 +22,7 @@
 
 make
 make DESTDIR="$1" install
+
+# sbindir is still broken after all...
+mv -f "$1/usr/sbin"* "$1/usr/bin"
+rmdir "$1/usr/sbin"
