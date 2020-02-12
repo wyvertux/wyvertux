@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
 export CC="${CC:-cc}"
-export CFLAGS="$CFLAGS $(pkg-config --cflags efivar)"
 
+patch -p1 < compiler-error.patch
 patch -p1 < efivar.patch
 
 gmake \
