@@ -1,3 +1,9 @@
+NOTE: This project is on hold for the time being. Since I have my own
+      vision for Wyvertux (namely, reducing dependencies on Busybox),
+      I am now redirecting my effort for a GNU-free Linux in Wyverkiss.
+      Basically, KISS Linux with the LLVM toolchain. See
+      https://github.com/konimex/wyverkiss for more information.
+
 Wyvertux -- a(n almost) GNU-free Linux distribution
 
 Wyvertux is an experimental Linux distribution that aims to completely
