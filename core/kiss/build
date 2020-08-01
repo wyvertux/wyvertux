@@ -1,7 +1,0 @@
-#!/bin/sh -e
-
-sed -e 's/gcc/llvm/' -i kiss
-
-install -D kiss         "$1/usr/bin/kiss"
-install -D kiss_path.sh "$1/etc/profile.d/kiss_path.sh"
-install -D kiss.1       "$1/usr/share/man/man1/kiss.1"

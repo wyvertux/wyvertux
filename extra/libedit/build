@@ -1,7 +1,0 @@
-#!/bin/sh -e
-
-CFLAGS="-D__STDC_ISO_10646__ $CFLAGS" ./configure \
-    --prefix=/usr
-
-make
-make DESTDIR="$1" install

@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-# Branding.
-sed -e 's/KISS/Wyvertux/' -i lib/init/rc.boot
-
-mkdir -p "$1/usr"
-
-cp -R etc "$1"
-cp -R lib "$1/usr/lib"

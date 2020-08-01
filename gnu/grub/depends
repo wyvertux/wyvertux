@@ -1,6 +1,0 @@
-binutils      make
-bison         make
-flex          make
-linux-headers make
-python        make
-xz

@@ -1,19 +1,25 @@
-NOTE: This project is on hold for the time being. Since I have my own
-      vision for Wyvertux (namely, reducing dependencies on Busybox),
-      I am now redirecting my effort for a GNU-free Linux in Wyverkiss.
-      Basically, KISS Linux with the LLVM toolchain. See
-      https://github.com/konimex/wyverkiss for more information.
-
 Wyvertux -- a(n almost) GNU-free Linux distribution
 
 Wyvertux is an experimental Linux distribution that aims to completely
 remove GNU utilities (if it's even possible) from the Linux build system.
 
 This kiss-repo-compliant git repo contains these directories:
-- core: essential packages for Wyvertux to run and build everything else
-        from the rootfs
-- extra: additional packages that might be useful to your workflow
-- gnu: for packages made by the GNU project that will be needed
+- main: all packages which doesn't need GNU components on run-time
+        (packages which has a make dependency on a GNU package is fine,
+         but patch it if possible.)
+- gnu: for packages made by the GNU project
+- encumbered: for packages which needs GNU libraries
 
 Wyvertux is still on very early development. Use at your own risk.
 The repo structure might be changed as long as it's still on 0.0.x.
+
+DIFFERENCES FROM KISS
+=====================
+
+Almost the same, but for the packaging system, a mandatory file should
+be added to the package directory (license). The first line should be
+an SPDX Identifier of the license (if the program is dual-licensed, put
+the other licenses on the next line), and if the license terms are not
+contained in the licenses package, the following line must be composed
+of the license notice. Any exceptions that might be applicable must
+also be included.
