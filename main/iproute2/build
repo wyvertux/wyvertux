@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+export HOSTCC=cc CC=cc YACC=yacc
+
+./configure \
+    --prefix=/usr
+
+gmake
+gmake DESTDIR="$1" SBINDIR=/usr/bin install
