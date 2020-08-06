@@ -1,0 +1,4 @@
+#!/bin/sh
+
+gmake LIBINTL=MUSL
+gmake PREFIX=/usr DESTDIR="$1" install
