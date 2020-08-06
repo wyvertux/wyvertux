@@ -1,0 +1,21 @@
+#!/bin/sh -e
+
+MAKE=gmake ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --with-zlib \
+    --with-xz
+
+gmake
+gmake DESTDIR="$1" install
+
+# Add compatibility symlinks.
+for tool in lsmod insmod rmmod depmod modinfo modprobe; do
+    ln -sf kmod "$1/usr/bin/$tool"
+done
+
+# Create dirs for depmod and modprobe.
+mkdir -p "$1/etc/depmod.d" \
+         "$1/etc/modprobe.d" \
+         "$1/usr/lib/depmod.d" \
+         "$1/usr/lib/modprobe.d"
