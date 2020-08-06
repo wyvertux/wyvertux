@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+sed -i 's|./demoCA|/etc/ssl|' apps/CA.pl.in
+sed -i 's|./demoCA|/etc/ssl|' apps/openssl.cnf
+
+./Configure \
+    --prefix=/usr \
+    --openssldir=/etc/ssl \
+    --libdir=/usr/lib \
+    linux-x86_64-clang
+
+make depend
+make
+make DESTDIR="$1" \
+     MANDIR=/usr/share/man \
+     MANSUFFIX=ssl \
+     install_sw install_ssldirs install_man_docs
