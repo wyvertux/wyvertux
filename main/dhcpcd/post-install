@@ -1,0 +1,2 @@
+#!/bin/sh
+useradd -rd /var/db/dhcpcd -s /sbin/nologin _dhcpcd
