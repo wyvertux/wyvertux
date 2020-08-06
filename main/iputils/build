@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+meson \
+    --prefix=/usr \
+    -DNO_SETCAP_OR_SUID=true \
+    -DUSE_IDN=false \
+    -DBUILD_TFTPD=false \
+    -DBUILD_NINFOD=false \
+    -DBUILD_MANS=false \
+    . build
+
+ninja -C build
+ninja -C build install
