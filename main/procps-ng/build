@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+MAKE=gmake ./configure \
+    --prefix=/usr \
+    --exec-prefix=/ \
+    --sysconfdir=/etc \
+    --libdir=/usr/lib \
+    --bindir=/usr/bin \
+    --sbindir=/usr/bin \
+    --disable-kill
+
+gmake
+gmake DESTDIR="$1" install
