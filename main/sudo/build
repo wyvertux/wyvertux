@@ -1,0 +1,27 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --sbindir=/usr/bin \
+    --libexecdir=/usr/lib \
+    --disable-root-mailer \
+    --disable-nls \
+    --disable-log-server \
+    --with-ignore-dot \
+    --with-insults=disabled \
+    --with-all-insults \
+    --with-env-editor \
+    --with-logfac=auth \
+    --with-mdoc \
+    --with-passprompt="[sudo] password for %p: " \
+    --enable-shell-sets-home \
+    --enable-noargs-shell \
+    --enable-pie \
+    --without-sendmail
+
+make
+make \
+    DESTDIR="$1" \
+    install_uid="$(id -u)" \
+    install_gid="$(id -g)" \
+    install
