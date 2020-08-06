@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+echo "Nothing to do here."
+echo "The licenses should be included in /var/db/kiss/repo/licenses/files"
