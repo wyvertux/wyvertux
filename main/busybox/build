@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+for patch in *.patch; do
+    patch -p1 < "$patch"
+done
+
+gmake CC=clang HOSTCC=clang
+gmake CC=clang HOSTCC=clang CONFIG_PREFIX="$1/usr" install
+
+# Install the symlinks. It's better this way.
+"$1/usr/bin/busybox" --list | while read -r bin; do
+    ln -s busybox "$1/usr/bin/$bin"
+done
