@@ -1,0 +1,10 @@
+http://linux-pam.org/library/Linux-PAM-1.3.0.tar.bz2
+files/other.pam
+files/system-auth.pam
+files/system-local-login.pam
+files/system-login.pam
+files/system-remote-login.pam
+files/system-services.pam
+patches/musl-fix-pam_exec.patch
+patches/portability-fixes.patch
+patches/pam_unix_sys_resource.patch

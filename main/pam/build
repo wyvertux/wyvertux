@@ -1,0 +1,36 @@
+#!/bin/sh -e
+
+for patches in *.patch; do
+    patch -p1 < "$patches"
+done
+
+./configure \
+    --prefix=/usr \
+    --sbindir=/usr/bin \
+    --docdir=/usr/share/doc-pam \
+    --disable-nls \
+    --disable-cracklib \
+    --disable-audit \
+    --disable-selinux \
+    --disable-regenerate-docu \
+    BUILD_CFLAGS=-Os \
+    BUILD_LDFLAGS= \
+    ac_cv_search_crypt=no
+
+make
+make DESTDIR="$1" install
+
+install -dm755 "$1/etc/security/limits.d"
+install -dm755 "$1/etc/security/namespace.d"
+
+for f in other system-auth system-local-login system-login \
+    system-remote-login system-services; do
+    install -Dm644 "$f.pam" "$1/etc/pam.d/$f"
+done
+
+# Fix unix_chkpwd perms.
+chmod 4755 "$1/usr/bin/unix_chkpwd"
+
+sed -i -e "s|^#!/bin/sh -p$|#!/bin/sh|" \
+    "$1/etc/security/namespace.init"
+chmod 755 "$1/etc/security/namespace.init"
