@@ -24,3 +24,7 @@ contained in the licenses package, the following lines must be composed
 of the license notice, with any exceptions that might be applicable
 must also be included (preferably, by appending COPYING/LICENSE file to
 the license file inside the package directory during build phase).
+
+KISS Linux is intended to be a minimal distribution, Wyvertux is not.
+If you intend to use a minimal KISS but still wants to go fully-LLVM,
+head over to Wyverkiss.
