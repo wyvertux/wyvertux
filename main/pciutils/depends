@@ -1,0 +1,4 @@
+gmake make
+hwids
+kmod
+zlib

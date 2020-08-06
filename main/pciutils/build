@@ -1,0 +1,29 @@
+#!/bin/sh -e
+
+gmake \
+    PREFIX=/usr \
+    ZLIB=yes \
+    SHARED=yes \
+    SHAREDIR=/usr/share/hwdata \
+    MANDIR=/usr/share/man \
+    OPT="${CFLAGS}" \
+    AR="${AR:=ar}" \
+    RANLIB="${RANLIB:=ranlib}" \
+    CC="${CC:=cc}" \
+    all
+
+gmake \
+    DESTDIR="$1" \
+    PREFIX=/usr \
+    SHARED=yes \
+    SHAREDIR=/usr/share/hwdata \
+    MANDIR=/usr/share/man \
+    install install-lib
+
+# Set corrects perms to shlib.
+chmod 755 "$1/usr/lib/libpci.so.$2"
+
+# Remove update-pciids and pci.ids, handled by hwids.
+rm -rf "$1/usr/share/hwdata"
+rm -f  "$1/usr/bin/update-pciids"
+rm -f  "$1/usr/share/man/man8/update-pciids.8"
