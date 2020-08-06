@@ -1,0 +1,7 @@
+https://github.com/shadow-maint/shadow/releases/download/4.8.1/shadow-4.8.1.tar.xz
+patches/shadow-strncpy-usage.patch
+patches/xstrdup.patch
+files/login.defs
+files/shadow.cron-daily
+files/passwd.pam
+files/chage.pam

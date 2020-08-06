@@ -1,0 +1,11 @@
+diff --git a/libmisc/xmalloc.c b/libmisc/xmalloc.c
+index 41a3343..e7c1139 100644
+--- a/libmisc/xmalloc.c
++++ b/libmisc/xmalloc.c
+@@ -64,5 +64,6 @@
+ 
+ /*@maynotreturn@*/ /*@only@*//*@notnull@*/char *xstrdup (const char *str)
+ {
++	if(str == NULL) return NULL;
+ 	return strcpy (xmalloc (strlen (str) + 1), str);
+ }

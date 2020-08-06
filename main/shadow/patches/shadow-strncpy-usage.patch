@@ -1,0 +1,23 @@
+--- a/src/usermod.c
++++ b/src/usermod.c
+@@ -182,7 +182,7 @@
+	struct tm *tp;
+
+	if (date < 0) {
+-		strncpy (buf, "never", maxsize);
++		strncpy (buf, "never", maxsize - 1);
+	} else {
+		time_t t = (time_t) date;
+		tp = gmtime (&t);
+--- a/src/login.c
++++ b/src/login.c
+@@ -752,7 +752,8 @@
+ 			          _("%s login: "), hostn);
+ 		} else {
+ 			strncpy (loginprompt, _("login: "),
+-			         sizeof (loginprompt));
++			         sizeof (loginprompt) - 1);
++			loginprompt[sizeof (loginprompt) - 1] = '\0';
+ 		}
+ 
+ 		retcode = pam_set_item (pamh, PAM_USER_PROMPT, loginprompt);

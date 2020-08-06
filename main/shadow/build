@@ -1,0 +1,71 @@
+#!/bin/sh -e
+
+patch -p1 < shadow-strncpy-usage.patch
+patch -p1 < xstrdup.patch
+
+./configure \
+    --prefix=/usr \
+    --bindir=/usr/bin \
+    --sbindir=/usr/bin \
+    --libdir=/usr/lib \
+    --mandir=/usr/share/man \
+    --sysconfdir=/etc \
+    --disable-account-tools-setuid \
+    --with-libpam \
+    --with-group-name-max-length=32 \
+    --without-audit \
+    --without-selinux \
+    --without-su
+
+make
+make DESTDIR="$1" install
+
+rm -f "$1/etc/pam.d/"*
+for f in chage passwd; do
+    install -m644 "$f.pam" "$1/etc/pam.d/$f"
+done
+
+for f in chpasswd chgpasswd groupadd groupdel groupmems \
+    groupmod newusers useradd userdel usermod; do
+    install -m644 "$1/etc/pam.d/chage" "$1/etc/pam.d/$f"
+done
+
+install -m644 login.defs "$1/etc"
+
+# Disable creating mailbox files by default.
+sed -i -e 's/yes/no/' "$1/etc/default/useradd"
+# Change default group to the users gid (100).
+sed -i -e 's/^\(GROUP\)=\(.*\)$/\1=100/' "$1/etc/default/useradd"
+
+chmod 644 "$1/etc/default/useradd"
+
+# Install the cron daily job.
+install -Dm744 shadow.cron-daily "$1/etc/cron.daily/shadow"
+
+# Remove utilities provided by util-linux and their man pages.
+mv "$1/usr/bin/newgrp" "$1/usr/bin/sg"
+
+rm -f \
+    "$1/usr/bin/login" \
+    "$1/usr/bin/chsh" \
+    "$1/usr/bin/chfn" \
+    "$1/usr/bin/nologin" \
+    "$1/usr/bin/logoutd" \
+    "$1/usr/sbin/vigr" \
+    "$1/usr/sbin/vipw"
+
+find "$1/usr/share/man" \
+    '(' -name 'chsh.1'    -o \
+        -name 'chfn.1'    -o \
+        -name 'login.1'   -o \
+        -name 'su.1'      -o \
+        -name 'vipw.8'    -o \
+        -name 'vigr.8'    -o \
+        -name 'logoutd.8' -o \
+        -name 'nologin.8' -o \
+        -name 'newgrp.1' ')' \
+        -delete
+
+# Move everything to /usr/bin.
+mv "$1/usr/sbin/"* "$1/usr/bin"
+rmdir "$1/usr/sbin"
