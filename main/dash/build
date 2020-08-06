@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+# Due to the important status of sh, compile dash statically, in case
+# of emergency, sh can be invoked.
+export CFLAGS="$CFLAGS -static"
+
+./configure \
+    --prefix=/usr
+
+gmake
+gmake DESTDIR="$1" install
+
+ln -s dash "$1/usr/bin/sh"
