@@ -1,0 +1,4 @@
+libcap
+linux-headers make
+pam
+zlib

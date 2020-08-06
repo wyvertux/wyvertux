@@ -1,0 +1,37 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --localstatedir=/var \
+    --bindir=/usr/bin \
+    --sbindir=/usr/bin \
+    --libdir=/usr/lib \
+    --enable-libuuid \
+    --enable-libblkid \
+    --enable-fsck \
+    --enable-vipw \
+    --enable-newgrp \
+    --enable-chfn-chsh \
+    --enable-fs-paths-extra=/usr/sbin:/usr/bin \
+    --disable-makeinstall-chown \
+    --disable-rpath \
+    --disable-more \
+    --with-udev \
+    --with-systemdsystemunitdir=no \
+    --without-udev \
+    --without-python \
+    --without-systemd
+
+make
+make usrsbin_execdir=/usr/bin DESTDIR="$1" install
+
+# Correct perms for newgrp, chfn, chsh, wall and write.
+chmod u+s "$1/usr/bin/newgrp"
+chmod u+s "$1/usr/bin/chsh"
+chmod u+s "$1/usr/bin/chfn"
+
+install -Dm644 login.pam  "$1/etc/pam.d/login"
+install -Dm644 su.pam     "$1/etc/pam.d/su"
+install -Dm644 su.pam     "$1/etc/pam.d/su-l"
+install -Dm644 common.pam "$1/etc/pam.d/chfn"
+install -Dm644 common.pam "$1/etc/pam.d/chsh"
