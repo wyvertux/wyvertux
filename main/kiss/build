@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+install -D kiss         "$1/usr/bin/kiss"
+install -D kiss_path.sh "$1/etc/profile.d/kiss_path.sh"
+
+# Install kiss utilities.
+cp contrib/* "$1/usr/bin/"
