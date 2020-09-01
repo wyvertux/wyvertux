@@ -10,8 +10,8 @@ This kiss-repo-compliant git repo contains these directories:
 - gnu: for packages made by the GNU project
 - encumbered: for packages which needs GNU libraries
 
-Wyvertux is still on very early development. Use at your own risk.
-The repo structure might be changed as long as it's still on 0.0.x.
+Wyvertux is still on very early development. There are no usable rootfs
+for the time being.
 
 DIFFERENCES FROM KISS
 =====================
