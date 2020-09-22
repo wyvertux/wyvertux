@@ -17,7 +17,7 @@ DIFFERENCES FROM KISS
 =====================
 
 Almost the same, but for the packaging system, a mandatory file should
-be added to the package directory (license). The first line should be
+be added to the package directory (licenses). The first line should be
 an SPDX Identifier of the license (if the program is dual-licensed, put
 the other licenses on the next line), and if the license itself is not
 contained in the licenses package, the following lines must be composed
