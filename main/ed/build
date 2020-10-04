@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --mandir=/usr/share/man \
+    --program-name=oed
+
+make
+make DESTDIR="$1" install
+
+ln -sf oed "$1/usr/bin/ed"
