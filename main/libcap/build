@@ -1,5 +1,9 @@
 #!/bin/sh -e
 
+# Make sure the Makefile respects the $(MAKE) variable.
+# shellcheck disable=SC2016
+sed -i 's/\<make\>/$(MAKE)/' libcap/Makefile tests/Makefile
+
 mk() {
     gmake \
         CC="${CC:-cc}" \
