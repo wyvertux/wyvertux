@@ -1,9 +1,5 @@
 #!/bin/sh -e
 
-for patches in *.patch; do
-    patch -p1 < "$patches"
-done
-
 ./configure \
     --prefix=/usr \
     --sbindir=/usr/bin \
@@ -13,8 +9,6 @@ done
     --disable-audit \
     --disable-selinux \
     --disable-regenerate-docu \
-    BUILD_CFLAGS=-Os \
-    BUILD_LDFLAGS= \
     ac_cv_search_crypt=no
 
 make
