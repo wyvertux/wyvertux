@@ -4,7 +4,7 @@ mkdir -p "$1/usr/bin"
 mkdir -p "$1/etc"
 
 cp etc/rc.conf "$1/etc"
-cp files/inittab "$1/etc"
+cp inittab "$1/etc"
 cp -R lib "$1/usr/lib"
 
 # Disable warning as CFLAGS must work this way.
