@@ -1,7 +1,16 @@
+NOTICE:
+
+Wyvertux is currently not in active development. An active effort (but
+with KISS Linux packages) is maintained on Wyverkiss.
+See https://github.com/wyvertux/wyverkiss for more details.
+
+========================================================================
+
 Wyvertux -- a(n almost) GNU-free Linux distribution
 
 Wyvertux is an experimental Linux distribution that aims to completely
-remove GNU utilities (if it's even possible) from the Linux build system.
+remove GNU utilities (if it's even possible) from the Linux build
+system.
 
 This kiss-repo-compliant git repo contains these directories:
 - main: all packages which doesn't need GNU components on run-time
@@ -24,6 +33,8 @@ contained in the licenses package, the following lines must be composed
 of the license notice, with any exceptions that might be applicable
 must also be included.
 
-KISS Linux is intended to be a minimal distribution, Wyvertux is not.
+KISS Linux is intended to be a minimal distribution, Wyvertux is not
+(and therefore, will not use any -tiny packages or lightweight
+replacements unless necessary).
 If you intend to use a minimal KISS but still wants to go fully-LLVM,
 head over to Wyverkiss.
